@@ -1,15 +1,18 @@
 package com.course.rabbitmq.producer.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
 public class Employee {
 
+    @JsonProperty("employee_id")
     private String employeeId;
 
     private String name;
 
+    @JsonProperty("birth_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
