@@ -1,7 +1,7 @@
 package com.course.rabbitmq.producer;
 
 import com.course.rabbitmq.producer.entity.Picture;
-import com.course.rabbitmq.producer.producer.PictureProducerTwo;
+import com.course.rabbitmq.producer.producer.MyPictureProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +20,7 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Autowired
-	private PictureProducerTwo producer;
+	private MyPictureProducer producer;
 
 	//valid sources
 	private final List<String> SOURCES = List.of("mobile", "web");
@@ -35,7 +35,7 @@ public class Application implements CommandLineRunner {
 			p.setName("Picture" + i);
 
 			//random size
-			p.setSize(ThreadLocalRandom.current().nextLong(1, 10000));
+			p.setSize(ThreadLocalRandom.current().nextLong(9001, 10000));
 
 			//source and type from list
 			p.setSource(SOURCES.get(i % SOURCES.size()));
