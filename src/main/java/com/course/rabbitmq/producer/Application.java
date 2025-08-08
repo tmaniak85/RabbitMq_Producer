@@ -3,6 +3,7 @@ package com.course.rabbitmq.producer;
 import com.course.rabbitmq.producer.entity.Employee;
 import com.course.rabbitmq.producer.producer.EmployeeJsonProducer;
 import com.course.rabbitmq.producer.producer.HelloRabbitProducer;
+import com.course.rabbitmq.producer.producer.HumanResourceProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,7 +22,7 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Autowired
-	private EmployeeJsonProducer producer;
+	private HumanResourceProducer producer;
 
 	@Override
 	public void run(String... args) throws Exception {
