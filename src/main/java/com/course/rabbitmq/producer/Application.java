@@ -1,7 +1,7 @@
 package com.course.rabbitmq.producer;
 
-import com.course.rabbitmq.producer.entity.Picture;
-import com.course.rabbitmq.producer.producer.MyPictureProducer;
+import com.course.rabbitmq.producer.entity.Furniture;
+import com.course.rabbitmq.producer.producer.FurnitureProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @EnableScheduling
 @SpringBootApplication
@@ -20,28 +19,23 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Autowired
-	private MyPictureProducer producer;
+	private FurnitureProducer producer;
 
-	//valid sources
-	private final List<String> SOURCES = List.of("mobile", "web");
+	private final List<String> COLORS = List.of("white", "red", "green");
 
-	//valid types
-	private final List<String> TYPES = List.of("jpg", "png", "svg");
+	private final List<String> MATERIALS = List.of("wood", "plastic", "steel");
 
 	@Override
 	public void run(String... args) throws Exception {
 		for (int i = 0; i < 10; i++) {
-			var p = new Picture();
-			p.setName("Picture" + i);
+			var furniture = new Furniture();
+			furniture.setName("Furniture " + i);
+			furniture.setColor(COLORS.get(i % COLORS.size()));
+			furniture.setMaterial(MATERIALS.get(i % MATERIALS.size()));
+			furniture.setPrice(i);
 
-			//random size
-			p.setSize(ThreadLocalRandom.current().nextLong(9001, 10000));
-
-			//source and type from list
-			p.setSource(SOURCES.get(i % SOURCES.size()));
-			p.setType(TYPES.get(i % TYPES.size()));
-
-			producer.sendMessage(p);
+			producer.sendMessage(furniture);
 		}
+
 	}
 }
