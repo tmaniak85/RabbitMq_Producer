@@ -1,14 +1,11 @@
 package com.course.rabbitmq.producer;
 
-import com.course.rabbitmq.producer.entity.Employee;
-import com.course.rabbitmq.producer.producer.RetryEmployeeJsonProducer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-import java.time.LocalDate;
-
+@EnableScheduling
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -16,15 +13,7 @@ public class Application implements CommandLineRunner {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Autowired
-	private RetryEmployeeJsonProducer producer;
-
 	@Override
 	public void run(String... args) throws Exception {
-		for (int i = 0; i < 10; i++) {
-			var emp = new Employee("Employee-" + i, null, LocalDate.now());
-
-			producer.sendMessage(emp);
-		}
 	}
 }
