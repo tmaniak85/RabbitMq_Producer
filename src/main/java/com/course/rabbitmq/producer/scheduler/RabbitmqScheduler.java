@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
-@Service
+//@Service
 public class RabbitmqScheduler {
 
     private static final Logger LOG = LoggerFactory.getLogger(RabbitmqScheduler.class);
