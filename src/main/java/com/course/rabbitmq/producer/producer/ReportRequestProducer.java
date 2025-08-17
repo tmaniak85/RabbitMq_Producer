@@ -10,7 +10,7 @@ import com.course.rabbitmq.producer.entity.ReportRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Service
+//@Service
 public class ReportRequestProducer {
 
 	@Autowired

@@ -1,5 +1,6 @@
 spring:
   rabbitmq:
-    addresses: "localhost:5672"
-    username: guest
-    password: guest
+    host: albatross.rmq.cloudamqp.com
+    username: oiqqbrgy
+    virtual-host: oiqqbrgy
+    password: erxoRCkPJqHaXiXiVPovkiOPclyLr9dS
