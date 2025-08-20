@@ -1,14 +1,15 @@
 package com.course.rabbitmq.producer;
 
-import com.course.rabbitmq.producer.entity.Picture;
-import com.course.rabbitmq.producer.producer.SpringPictureProducer;
+import com.course.rabbitmq.producer.entity.Employee;
+import com.course.rabbitmq.producer.producer.SpringEmployeeJsonProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
-@EnableScheduling
+import java.time.LocalDate;
+
+//@EnableScheduling
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
@@ -17,16 +18,12 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Autowired
-	private SpringPictureProducer producer;
+	private SpringEmployeeJsonProducer producer;
 
 	@Override
 	public void run(String... args) throws Exception {
-		var p = new Picture();
-		p.setName("Spring picture");
-		p.setSize(9500);
-		p.setSource("web");
-		p.setType("jpg");
+		var emp = new Employee("emp-spring", null, LocalDate.now());
 
-		producer.sendMessage(p);
+		producer.sendMessage(emp);
 	}
 }
